@@ -30,9 +30,12 @@
 > 4. RedRouter x1 (Redstone links x4) (propeller arm tilt)
 ---
 ### Design
-<img width="762" height="571" alt="image" src="https://github.com/user-attachments/assets/c94c8ba9-97f4-4181-b6d5-337730610289" />
-<img width="763" height="572" alt="image" src="https://github.com/user-attachments/assets/a7ff79f8-8218-4cc9-a268-832ffcface06" />
-<img width="787" height="478" alt="image" src="https://github.com/user-attachments/assets/9162f8b2-c512-4281-8f27-114fd89e2215" />
+<img width="762" height="571" alt="Screenshot 2026-10-17 050622" src="https://github.com/user-attachments/assets/e6c86159-d312-44c8-94a0-0ecf4f0915eb" />
+<img width="763" height="572" alt="Screenshot 2026-10-17 051956" src="https://github.com/user-attachments/assets/1855576b-9ae5-43d0-9aed-f2b4d336ef92" />
+<img width="787" height="478" alt="Screenshot 2026-10-17 050910" src="https://github.com/user-attachments/assets/5ae0c078-5585-4822-a4f4-27c8ab8195d1" />
+
+
+
 
 
 
