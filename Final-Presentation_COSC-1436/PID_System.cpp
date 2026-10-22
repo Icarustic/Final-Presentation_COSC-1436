@@ -99,6 +99,7 @@ double PidSystem(double Desired, double Measured) //Pid System
 
 int main()
 {
+    /*
 
     Ratio someRatio = { 6, 5 };
     someRatio.firstNumber = 123; 
@@ -120,6 +121,8 @@ int main()
         _
     abs(-5) * Multiplier = x //fabs
         x:1
+
+    */
 
     /* ------Blue_Print---- */
     // 1. Altitude Control - Sets Motor Speed
@@ -144,7 +147,7 @@ int main()
     Desired = DesiredAltitude;
     for (int i = 0; i <= 30; i++)
     {
-        Measured = i * 1; //Testing code to visulize adjusments as altitude changes.
+        Measured = (i * 1); //Testing code to visulize adjusments as altitude changes.
         cout << "Measured Altitude: " << Measured << endl;
         cout << "Desired Altitude:  " << Desired << endl;
 
@@ -162,6 +165,8 @@ int main()
         //}
         int AltitudeCorrection = ThrustCorrection + HoverThrust;
         cout << "AltitudeCorrection/Rpm is " << AltitudeCorrection << endl; // + PassiveThrust (The amount needed to keep the aircraft level/even/stable)
+        //Measured += (AltitudeCorrection * 0.2); //Find a way to code the corrections being implemented for visulization
+        //cout << (AltitudeCorrection * 0.2);
         cout << endl;
     }
 
