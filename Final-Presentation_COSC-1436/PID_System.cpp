@@ -17,6 +17,8 @@ double Measured; //Set via peripheral
 double Desired; //Set via Controls
 bool Startup = true;
 double Derivative;
+double Integral;
+int AltitudeCorrection; //Altitude Correction
 
 //Manual Settings
 double PIntensity = 5; //Starting point of the correction (immediate correction)
@@ -64,10 +66,12 @@ double PidSystem(double Desired, double Measured) //Pid System
     cout << "Proportional: " << Proportional << endl;
 
     // 2. Integral
-    IntegralSum += (Error * elapsedtime); 
-    //Adds the sum of (Errors*Time) Note: Its both values not just error. 
-    //Dosent reqiure storing all Errors to compute, just adds them all together overtime.
-    double Integral = IntegralSum * IIntensity;
+    // Add an Anti Windup Loop
+     IntegralSum += (Error * elapsedtime);
+     //Adds the sum of (Errors*Time) Note: Its both values not just error. 
+     //Dosent reqiure storing all Errors to compute, just adds them all together overtime.
+     Integral = IntegralSum * IIntensity;
+    
     cout << "Integral: " << Integral << endl;
 
     // 3. Derivative
@@ -111,9 +115,9 @@ int main()
     int HoverThrust = 32; //The passive RPM needed to stay stable
     Measured = MeasuredAltitude;
     Desired = DesiredAltitude;
-    for (int i = 0; i <= 20; i++)
+    for (int i = 0; i <= 30; i++)
     {
-        Measured = i * 0.5; //Testing code to visulize adjusments as altitude changes.
+        Measured = i * 5; //Testing code to visulize adjusments as altitude changes.
         cout << "Measured Altitude: " << Measured << endl;
         cout << "Desired Altitude:  " << Desired << endl;
 
@@ -128,7 +132,8 @@ int main()
         {
             ThrustCorrection = -256;
         }
-        cout << "AltitudeCorrection/Rpm is " << ThrustCorrection + HoverThrust << endl; // + PassiveThrust (The amount needed to keep the aircraft level/even/stable)
+        AltitudeCorrection = ThrustCorrection + HoverThrust;
+        cout << "AltitudeCorrection/Rpm is " << AltitudeCorrection << endl; // + PassiveThrust (The amount needed to keep the aircraft level/even/stable)
         cout << endl;
     }
 
