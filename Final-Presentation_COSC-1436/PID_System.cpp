@@ -16,9 +16,7 @@ double Error;
 double Measured; //Set via peripheral
 double Desired; //Set via Controls
 bool Startup = true;
-double Derivative;
-double Integral;
-int AltitudeCorrection; //Altitude Correction
+double Derivative = 0.0;
 
 //Manual Settings
 double PIntensity = 5; //Starting point of the correction (immediate correction)
@@ -67,10 +65,12 @@ double PidSystem(double Desired, double Measured) //Pid System
 
     // 2. Integral
     // Add an Anti Windup Loop
-     IntegralSum += (Error * elapsedtime);
-     //Adds the sum of (Errors*Time) Note: Its both values not just error. 
-     //Dosent reqiure storing all Errors to compute, just adds them all together overtime.
-     Integral = IntegralSum * IIntensity;
+
+ 
+    IntegralSum += (Error * elapsedtime);
+    //Adds the sum of (Errors*Time) Note: Its both values not just error. 
+    //Dosent reqiure storing all Errors to compute, just adds them all together overtime.
+    double Integral = IntegralSum * IIntensity;
     
     cout << "Integral: " << Integral << endl;
 
@@ -132,7 +132,7 @@ int main()
         {
             ThrustCorrection = -256;
         }
-        AltitudeCorrection = ThrustCorrection + HoverThrust;
+        int AltitudeCorrection = ThrustCorrection + HoverThrust;
         cout << "AltitudeCorrection/Rpm is " << AltitudeCorrection << endl; // + PassiveThrust (The amount needed to keep the aircraft level/even/stable)
         cout << endl;
     }
