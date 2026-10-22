@@ -11,6 +11,7 @@
 - ***PID Systems***: Each regulated value requires its own PID system to manage.
 <img width="1526" height="327" alt="image" src="https://github.com/user-attachments/assets/21cc8244-719a-4c37-b670-9602d17fb148" />
 >> Note: Traditional Drones turn using CW and CCW spinning propellers, 2 for each diagonal, where CCW speeds up, and CW slows down, causing a turn.
+---
 - ***Translation/Communication***: How does the drone communicate its orientation with the program/computer?
 > 1. Gimbal Sensor & Speedometer & Compact Bearing/Propeller Gear Drive
 > 2. Gimbal Sensor & Propeller Gear Drive
