@@ -95,7 +95,8 @@ int main()
     // 2. Pitch Controls - Normal drones have a feedback to help with thrust being lost due to tilt.
     // 3. Yaw Control 
     // 4. Roll Control - Relative Motor Speeds : Ratios : Defult = 1:1 , Right Roll = 2:1, etc
-    // 5. Total Control
+    // 5. Total Control - Combines (AltitudeThrust with RollThrustRatio) and (YawTilt + PitchTilt)
+    // I still need PID for the Yaw,Pitch, and Roll values systems to counter high sensitivity controls leading to jagged movment.
 
     /*Main*/ 
 
@@ -107,16 +108,16 @@ int main()
     // Controls and Sensor would provide the following information:
     double MeasuredAltitude = 0;
     double DesiredAltitude = 5;
-    int HoverThrust; //The passive RPM needed to stay stable
+    int HoverThrust = 32; //The passive RPM needed to stay stable
     Measured = MeasuredAltitude;
     Desired = DesiredAltitude;
     for (int i = 0; i <= 20; i++)
     {
-        Measured = i * 0.5;
+        Measured = i * 0.5; //Testing code to visulize adjusments as altitude changes.
         cout << "Measured Altitude: " << Measured << endl;
         cout << "Desired Altitude:  " << Desired << endl;
 
-        int ThrustCorrection = PidSystem(Desired, Measured) + HoverThrust; // + PassiveThrust (The amount needed to keep the aircraft level/even/stable)
+        int ThrustCorrection = PidSystem(Desired, Measured); 
         Sleep(1000); // Lua Equivilant = Sleep(1) //Sperates the Duration between loops by 1 second
         //Thrust = Rpm (Range: -256,256)
         if (ThrustCorrection > 256)
@@ -127,12 +128,12 @@ int main()
         {
             ThrustCorrection = -256;
         }
-        cout << "AltitudeCorrection/Rpm is " << ThrustCorrection << endl; 
+        cout << "AltitudeCorrection/Rpm is " << ThrustCorrection + HoverThrust << endl; // + PassiveThrust (The amount needed to keep the aircraft level/even/stable)
         cout << endl;
     }
 
-    /*------Pitch------*/ //Do I need a PID System for these? couldnt they be controled directly?
-    //Tilt (Range = -45,45)  
+    /*------Pitch------*/ 
+    // Tilt (Range = -45,45) (Redstone Range: 0,15)
     // DesiredForwardMovment - MeasuredForwardMovment = Pitch Angle //Uses a Speedometer
   
 
