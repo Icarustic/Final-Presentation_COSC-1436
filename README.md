@@ -25,9 +25,9 @@
 ### Components List:
 > 1. Gimbal Sensor x1 (general)
 > 2. Altitude Sensor x1 (general)
-> 3. Rotational Speed Controller x2 (+1) (propellor speed & direction)
-> 4. RedRouter x1 (Redstone links x4) (propeller arm tilt)
-> 5. Speedometer x1
+> 3. Speedometer x1
+> 4. Rotational Speed Controller x2 (+1) (propellor speed & direction)
+> 5. RedRouter x1 (Redstone links x4) (propeller arm tilt)
 ---
 ### Design
 <img width="762" height="571" alt="Screenshot 2026-10-17 050622" src="https://github.com/user-attachments/assets/e6c86159-d312-44c8-94a0-0ecf4f0915eb" />
