@@ -8,6 +8,12 @@
 
 using namespace std;
 
+struct Ratio
+{
+    int firstNumber; 
+    int secondNumber; 
+};
+
 using Clock = chrono::steady_clock; // Similar to using namespace std;
 // Lua Equivilant is os.clock() to set a variable = current time.
 
@@ -66,7 +72,6 @@ double PidSystem(double Desired, double Measured) //Pid System
     // 2. Integral
     // Add an Anti Windup Loop
 
- 
     IntegralSum += (Error * elapsedtime);
     //Adds the sum of (Errors*Time) Note: Its both values not just error. 
     //Dosent reqiure storing all Errors to compute, just adds them all together overtime.
@@ -94,6 +99,28 @@ double PidSystem(double Desired, double Measured) //Pid System
 
 int main()
 {
+
+    Ratio someRatio = { 6, 5 };
+    someRatio.firstNumber = 123; 
+
+    cout << someRatio.firstNumber << "\t" << someRatio.secondNumber << std::endl; 
+
+    if (pid < 0)
+    {
+        //Swap the structure
+        int temporaryCopy = someRatio.firstNumber; 
+        someRatio.firstNumber = someRatio.secondNumber;
+        someRatio.secondNumber = temporaryCopy; 
+    }
+
+    if 
+        +
+    5 * Multiplier = x
+        1:x 
+        _
+    abs(-5) * Multiplier = x //fabs
+        x:1
+
     /* ------Blue_Print---- */
     // 1. Altitude Control - Sets Motor Speed
     // 2. Pitch Controls - Normal drones have a feedback to help with thrust being lost due to tilt.
@@ -111,27 +138,28 @@ int main()
     // Settings (P5,I2,D10)
     // Controls and Sensor would provide the following information:
     double MeasuredAltitude = 0;
-    double DesiredAltitude = 5;
+    double DesiredAltitude = 15;
     int HoverThrust = 32; //The passive RPM needed to stay stable
     Measured = MeasuredAltitude;
     Desired = DesiredAltitude;
     for (int i = 0; i <= 30; i++)
     {
-        Measured = i * 5; //Testing code to visulize adjusments as altitude changes.
+        Measured = i * 1; //Testing code to visulize adjusments as altitude changes.
         cout << "Measured Altitude: " << Measured << endl;
         cout << "Desired Altitude:  " << Desired << endl;
 
         int ThrustCorrection = PidSystem(Desired, Measured); 
         Sleep(1000); // Lua Equivilant = Sleep(1) //Sperates the Duration between loops by 1 second
+
         //Thrust = Rpm (Range: -256,256)
-        if (ThrustCorrection > 256)
-        {
-            ThrustCorrection = 256;
-        }
-        else if (ThrustCorrection < -256)
-        {
-            ThrustCorrection = -256;
-        }
+        //if (ThrustCorrection > 256)
+        //{
+        //    ThrustCorrection = 256;
+        //}
+        //else if (ThrustCorrection < -256)
+        //{
+        //    ThrustCorrection = -256;
+        //}
         int AltitudeCorrection = ThrustCorrection + HoverThrust;
         cout << "AltitudeCorrection/Rpm is " << AltitudeCorrection << endl; // + PassiveThrust (The amount needed to keep the aircraft level/even/stable)
         cout << endl;
